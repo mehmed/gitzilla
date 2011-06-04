@@ -98,7 +98,19 @@ def post_receive(sBZUrl, sBZUser=None, sBZPasswd=None, sFormatSpec=None, oBugReg
         iBugId = int(oMatch.group("bug"))
         logger.debug("Found bugid %d" % (iBugId,))
         try:
-          oBZ.modify(iBugId, comment=sMessage)
+          sStatus = None
+          sResolution = None
+          st = oMatch.group("status")
+          if (st):
+            logger.debug("Match on status: %s" % st)
+            if st == "FIXED":
+                sStatus = 'RESOLVED'
+                sResolution = 'FIXED'
+            elif st == "CLOSED":
+                sStatus = 'CLOSED'
+
+          oBZ.modify(iBugId, comment=sMessage, status=sStatus, resolution=sResolution)
+
         except Exception, e:
           logger.exception("Could not add comment to bug %d" % (iBugId,))
 
