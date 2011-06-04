@@ -110,6 +110,11 @@
 #          - bug# 123
 #          - Bug #123
 #
+#       New bug regex, which is also used for status, is as follows:
+#          - BUG:COMMENT:ID
+#          - BUG:FIXED:ID
+#          - BUG:CLOSED:ID
+#
 #  * git_ref_prefix
 #        
 #      the string which must start a git reference for its commits to be
@@ -143,4 +148,6 @@
 # bugzilla_password: barbarblah
 # allowed_bug_states: NEW, ASSIGNED, REOPENED
 # user_config: deny
-
+#
+#bug_regex: ^bug\:(?P<status>Fixed|Comment|Closed){1}\:(?P<bug>\d*)
+#
