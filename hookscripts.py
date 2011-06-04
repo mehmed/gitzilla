@@ -13,6 +13,7 @@ import gitzilla.hooks
 import logging
 import ConfigParser
 import bugz
+import re
 
 DEFAULT = 'DEFAULT'
 
